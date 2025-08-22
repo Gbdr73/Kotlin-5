@@ -16,6 +16,25 @@ fun main() {
     techChecks()
     println("\n===> Taz...")
     println(Taz.color)
+
+    val fuelStation = FuelStation()
+    val cars = listOf( Vaz2107.build(Car.Plates("777", 77)),
+        Vaz2108.build(Car.Plates("284", 61)),
+        Taz)
+
+    cars.forEach { nextcar ->
+        println("Заправляем машину - $nextcar")
+        fuelStation.FillUpTheCar(nextcar,20)
+
+        try {
+            val liters = nextcar.carOutput.getFuelContents()
+            println("Теперь в баке $liters литров")
+        }
+        catch (e: NotImplementedError)
+        {
+            println("Нет больше машины!")
+        }
+    }
 }
 
 fun driveCars() {
